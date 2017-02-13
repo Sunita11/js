@@ -1,0 +1,30 @@
+{
+  "name": "jsproject",
+  "version": "1.0.0",
+  "description": "for practicing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sunita11/js.git"
+  },
+  "author": "sunita",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sunita11/js/issues"
+  },
+  "homepage": "https://github.com/Sunita11/js#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-compass": "^1.1.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^2.1.0",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}
