@@ -1,0 +1,18 @@
+{
+	"navigationdata": [{
+		"item": "home",
+		"link": "/"
+	},{
+		"item": "Company",
+		"link": "company.html"
+	},{
+		"item": "Product",
+		"link": "product.html"
+	},{
+		"item": "Shop",
+		"link": "shop.html"
+	},{
+		"item": "Blog",
+		"link": "blog.html"
+	}]
+}

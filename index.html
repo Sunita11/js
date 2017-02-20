@@ -3,13 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <title>Angular Demo</title>
- <script type="text/javascript" src="lib/angularjs/angular.js"></script>
-	<script type="text/javascript" src="lib/angularjs/angular-route.js"></script>
-	<script type="text/javascript" src="src/js/app.js"></script>
-	<script type="text/javascript" src="src/js/controller.js"></script>
+	<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  	<script type="text/javascript" src="lib/colorbox/jquery.colorbox-min.js"></script>
+  	<script type="text/javascript" src="lib/handlebars-v4.0.5.js"></script>
+
+
+	<script type="text/javascript" src="src/js/main.js"></script>
+	<link rel="stylesheet" type="text/css" href="lib/colorbox/example1/colorbox.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-<div class="main" ng-view></div>
+<%include src="partials/header-partial.html"%>
+	<main id="main">
+		<div class="img-0">
+			<a href="http://www.whiteflowerfarm.com/mas_assets/cache/image/2/b/b/699.Jpg">
+				<img src="images/Lotus_Pink-tn.jpg">
+			</a>
+		</div>
+		<div class="img-1">
+			<a href="http://www.tulipworld.com/mmTW/Images/450X450/4733.jpg">
+				<img src="images/Lotus_Pink-tn.jpg">
+			</a>
+		</div>
+		<div class="img-2">
+			<a href="http://www.whiteflowerfarm.com/mas_assets/cache/image/2/b/b/699.Jpg">
+				<img src="images/Lotus_Pink-tn.jpg">
+			</a>
+		</div>
+		<div class="img-3">
+			<a href="https://s-media-cache-ak0.pinimg.com/originals/4e/b0/94/4eb094297041410f47aa4c6651bfc2e9.jpg">
+				<img src="images/Lotus_Pink-tn.jpg">
+			</a>
+		</div>
+	</main>
 </body>
 </html>

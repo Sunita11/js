@@ -1,0 +1,10 @@
+#main {
+	div[class^="img-"] {
+		display:inline-block;
+
+		img{
+			width:200px;
+		}
+	}
+
+}

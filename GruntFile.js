@@ -23,6 +23,21 @@ module.exports = function(grunt){
 			}
 		},
 
+		htmlrender: {
+			build: {
+				options: {
+					src: ['*.html']
+				},
+				files: [{
+					expand:true,
+					cwd:'src',
+					src: ['index.html'],
+					dest: 'dist',
+					ext: '.html'
+				}]
+			}
+		},
+
 		compass: {
 			dist: {
 				options: {
@@ -87,7 +102,8 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-compass');
+	grunt.loadNpmTasks('grunt-htmlrender');
 
 	grunt.registerTask('default', ['sass','jshint', 'concat','uglify']);
-	grunt.registerTask('all', ['clean','sass','connect']);
+	grunt.registerTask('all', ['clean','sass','htmlrender','connect','watch:sassWatch']);
 };

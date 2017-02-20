@@ -1,0 +1,19 @@
+<script id="header" type="text/x-handlebars-template">
+<header>
+		<nav>
+			<div  class="container">
+				<ul "list-1">
+					{{#if navigationdata.length}}
+						{{#each navigationdata}}
+						<li class="items-list-{{@index}}">
+							<a href="{{link}}"> {{item}} </a>
+						</li>
+						{{/each}}
+					{{/if}}
+					</ul> 
+			</div>
+		</nav>
+	</header>
+</script>
+
+
