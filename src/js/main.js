@@ -1,3 +1,5 @@
+//https://scotch.io/tutorials/building-your-own-javascript-modal-plugin
+
 //Creating IIFE to hide its global visuality
 
 (function(){
@@ -132,9 +134,3 @@
 		return "transitionend";
 	}
 })();
-
-
-var myModal = new Modal({
-	maxWidth: 500,
-	minWidth: 200
-});
