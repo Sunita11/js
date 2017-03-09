@@ -1,1 +1,5 @@
-just a simple angular app for learning purpose
+modal plugin
+
+* install git
+* npm install
+* gem install compass
