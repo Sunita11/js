@@ -100,15 +100,13 @@
 		opacity: 0;
 		background: $black;
 		z-index: 1;
+		top: 0;
+		bottom: 0;
 
-		@include transition(3s opacity 3s ease);
+		@include transition(1ms opacity ease);
 
 		&.overlay-open {
 			opacity: 1;
-			top: 0;
-			bottom: 0;
-
-			@include transition(3s opacity ease);
 		}
 	}
 

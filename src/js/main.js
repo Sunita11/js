@@ -39,8 +39,12 @@
 
 		_this.removeClass(_this.modal, "modal-open");
 		_this.removeClass(_this.overlay, "overlay-open");
+		_this.modal.parentNode.removeChild(_this.modal);
+		if(_this.overlay.parentNode) {
+				_this.overlay.parentNode.removeChild(_this.overlay);
+			}
 
-		_this.modal.addEventListener(this.transitionEnd, function(){
+		/*_this.modal.addEventListener(this.transitionEnd, function(){
 			_this.modal.parentnode.removeChild(_this.modal);
 		});
 
@@ -48,7 +52,7 @@
 			if(_this.overlay.parentnode) {
 				_this.overlay.parentnode.removeChild(_this.overlay);
 			}
-		});
+		});*/
 	}
 
 	Modal.prototype.removeClass = function(el, classname) {
