@@ -7,7 +7,7 @@
 	this.Modal = function(){
 		var defaults = {
 			className: "fade-and-drop",
-			content: "",
+			content: "This is modal window",
 			maxWidth: 600,
 			minWidth: 300,
 			closeButton: true,
@@ -19,7 +19,8 @@
 
 		if(arguments[0] && typeof arguments[0] === "object") {
 			this.options = extendDefaults(defaults , arguments[0]);
-			console.log(this.options);
+		}else {
+			this.options = defaults;
 		}
 
 		this.transitionEnd = browserSpecificTransition();
@@ -29,13 +30,15 @@
 	Modal.prototype.open = function(){
 		build.call(this);
 		initializeEvents.call(this);
-		this.overlay.className = this.options.className + " opened";
+		this.addClass(this.modal,  "modal-open");
+		this.addClass(this.overlay,  "overlay-open");
 	}
 
 	Modal.prototype.close = function() {
 		var _this = this;
-		_this.modal.className.replace("modal ", "");
-		_this.overlay.className.replace("opened", "");
+
+		_this.removeClass(_this.modal, "modal-open");
+		_this.removeClass(_this.overlay, "overlay-open");
 
 		_this.modal.addEventListener(this.transitionEnd, function(){
 			_this.modal.parentnode.removeChild(_this.modal);
@@ -46,6 +49,35 @@
 				_this.overlay.parentnode.removeChild(_this.overlay);
 			}
 		});
+	}
+
+	Modal.prototype.removeClass = function(el, classname) {
+		var classname = classname.replace(/\s/g,"");
+		if(el.classList && el.classList.contains(classname)) {
+			el.classList.remove(classname);
+		}
+	}
+
+
+	//add one or more class at a time
+	Modal.prototype.addClass = function(el,classname){
+		var classname = classname.replace(/^\s+|\s+$/g, '');
+		if(classname.indexOf(" ") > 0) {
+			var arrayOfClasses = classname.split(" ");
+			for (var i =0;i<arrayOfClasses.length;i++) {
+				if(el.classList && !el.classList.contains(arrayOfClasses[i])){
+					el.classList.add(arrayOfClasses[i]);
+				}else {
+					el.className += arrayOfClasses[i];
+				}
+			}
+		}else {
+			if(el.classList && !el.classList.contains(classname)){
+				el.classList.add(classname);
+			}else {
+				el.className += classname;
+			}
+		}
 	}
 
 	//Private utility method to extend the default options
@@ -79,30 +111,30 @@
 
 		//creating overlay and appending to docFrag
 		if(this.options.overlay === true) {
-			var overlay = document.createElement("div");
-			ovelay.className = "modal-overlay ";
-			docFrag.appendChild(overlay);
+			this.overlay = document.createElement("div");
+			this.addClass(this.overlay, "modal-overlay");
+			docFrag.appendChild(this.overlay);
 		}
 
 
 		//creating content holder and attaching it to this.modal
 		this.modal = document.createElement("div");
-		this.modal.className = "modal " + this.options.className;
-		this.modal.minWidth = this.options.minWidth + "px";
-		this.moda.maxWidth = this.options.maxWidth + "px";
+		this.modal.style.minWidth = this.options.minWidth + "px";
+		this.modal.style.maxWidth = this.options.maxWidth + "px";
+		this.addClass(this.modal, this.options.className + " modal");
 
 		//If close button option is true
 		if(this.options.closeButton === true) {
 			var closeButton = document.createElement("button");
-			closeButton.className = "modal-close modal-close-btn";
 			closeButton.innerHTML = "X";
+			this.addClass(closeButton, "modal-close modal-close-btn");
 			this.modal.appendChild(closeButton);
 		}
 
 		//Create content area
 		contentHolder = document.createElement("div");
-		contentHolder.className = "modal-content";
 		contentHolder.innerHTML = content;
+		this.addClass(contentHolder, "modal-content");
 		this.modal.appendChild(contentHolder);
 
 		//Append modal to docFrag
@@ -116,12 +148,14 @@
 
 	//adding eventListeners
 	function initializeEvents(){
-		if(this.closeButton) {
-			this.closeButton.addEventListener('click', this.close.bind(this));
+		if(this.options.closeButton) {
+			var closeBtnNode = document.getElementsByClassName("modal-close-btn")[0];
+			closeBtnNode.addEventListener('click', this.close.bind(this));
 		}
 
-		if(this.overlay) {
-			this.overlay.addEventListener('click', this.close.bind(this));
+		if(this.options.overlay) {
+			var overlayNode = document.getElementsByClassName("modal-overlay")[0];
+			overlayNode.addEventListener('click', this.close.bind(this));
 		}
 	}
 
@@ -134,3 +168,9 @@
 		return "transitionend";
 	}
 })();
+
+var myModal = new Modal();
+var btn = document.getElementsByClassName("btn")[0];
+btn.addEventListener("click", function(){
+	myModal.open();
+});

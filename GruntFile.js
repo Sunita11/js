@@ -23,16 +23,6 @@ module.exports = function(grunt){
 			}
 		},
 
-		compass: {
-			dist: {
-				options: {
-					sassDir: 'src/sass',
-					cssDir: 'src/css',
-					raw: 'preferred_syntax = :sass\n' // Use `raw` since it's not directly available
-				}
-			}
-		},
-
 		concat: {
 			options: {
 				separator: ';'
@@ -69,13 +59,21 @@ module.exports = function(grunt){
 		watch: {
 			sassWatch: {
 				files: ['src/sass/*.scss'],
-				tasks:['compass']
+				tasks:['sass'],
+				options: {
+					livereload: true,
+				}
 			},
 			jsWatch: {
-				files: ['<%= jshint.files %>','src/css/*'],
+				files: ['<%= jshint.files %>','src/js/*'],
 				tasks: ['jshint']
 			}
 		},
+
+		concurrent: {
+			target: ['connect','watch:sassWatch']
+		},
+
 		clean: ['dist/*','css/']
 	});
 
@@ -86,8 +84,8 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-compass');
+	grunt.loadNpmTasks('grunt-concurrent');
 
 	grunt.registerTask('default', ['sass','jshint', 'concat','uglify']);
-	grunt.registerTask('all', ['clean','sass','connect']);
+	grunt.registerTask('all', ['clean','sass','concurrent:target']);
 };
