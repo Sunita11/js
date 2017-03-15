@@ -5,8 +5,13 @@
 (function(){
 	//making own constructor
 	this.Modal = function(){
+
+		this.modal = null;
+		this.overlay = null;
+		this.closeButton = null;
+
+		this.transitionEnd = browserSpecificTransition();
 		var defaults = {
-			className: "fade-and-drop",
 			content: "This is modal window",
 			maxWidth: 600,
 			minWidth: 300,
@@ -21,38 +26,37 @@
 			this.options = extendDefaults(defaults , arguments[0]);
 		}else {
 			this.options = defaults;
-		}
-
-		this.transitionEnd = browserSpecificTransition();
+		}		
 	}
 
 	//Public  method to open the overlay
 	Modal.prototype.open = function(){
+		var modalclassName;
+
 		build.call(this);
 		initializeEvents.call(this);
-		this.addClass(this.modal,  "modal-open");
-		this.addClass(this.overlay,  "overlay-open");
+
+		modalclassName = (this.modal.offsetHeight > window.innerHeight ?
+		" modal-open modal-anchored" : " modal-open");
+		this.addClass(this.modal,  modalclassName);
+		this.addClass(this.overlay,  "overlay-open");	
 	}
 
 	Modal.prototype.close = function() {
 		var _this = this;
 
 		_this.removeClass(_this.modal, "modal-open");
+
+		if(_this.modal.classList.contains("modal-anchored")) {
+			_this.removeClass(_this.modal, "modal-anchored");
+		}
+
 		_this.removeClass(_this.overlay, "overlay-open");
-		_this.modal.parentNode.removeChild(_this.modal);
-		if(_this.overlay.parentNode) {
-				_this.overlay.parentNode.removeChild(_this.overlay);
-			}
 
-		/*_this.modal.addEventListener(this.transitionEnd, function(){
-			_this.modal.parentnode.removeChild(_this.modal);
+		_this.modal.addEventListener(this.transitionEnd, function(){
+			_this.modal.parentNode.removeChild(_this.modal);
+			_this.overlay.parentNode.removeChild(_this.overlay);
 		});
-
-		_this.overlay.addEventListener(this.transitionEnd, function(){
-			if(_this.overlay.parentnode) {
-				_this.overlay.parentnode.removeChild(_this.overlay);
-			}
-		});*/
 	}
 
 	Modal.prototype.removeClass = function(el, classname) {
@@ -84,19 +88,7 @@
 		}
 	}
 
-	//Private utility method to extend the default options
-	function extendDefaults(source, properties) {
-		var property;
-
-		for(property in properties) {
-			if(properties.hasOwnProperty(property)) {
-				source[property] = properties[property];
-			}
-		}
-
-		return source;
-	}
-
+	
 	//function to build modal window fragment
 
 	function build(){
@@ -125,14 +117,14 @@
 		this.modal = document.createElement("div");
 		this.modal.style.minWidth = this.options.minWidth + "px";
 		this.modal.style.maxWidth = this.options.maxWidth + "px";
-		this.addClass(this.modal, this.options.className + " modal");
+		this.addClass(this.modal, "modal ");
 
 		//If close button option is true
 		if(this.options.closeButton === true) {
-			var closeButton = document.createElement("button");
-			closeButton.innerHTML = "X";
-			this.addClass(closeButton, "modal-close modal-close-btn");
-			this.modal.appendChild(closeButton);
+			this.closeButton = document.createElement("button");
+			this.closeButton.innerHTML = "X";
+			this.addClass(this.closeButton, "modal-close modal-close-btn");
+			this.modal.appendChild(this.closeButton);
 		}
 
 		//Create content area
@@ -149,6 +141,18 @@
 
 	}
 
+	//Private utility method to extend the default options
+	function extendDefaults(source, properties) {
+		var property;
+
+		for(property in properties) {
+			if(properties.hasOwnProperty(property)) {
+				source[property] = properties[property];
+			}
+		}
+
+		return source;
+	}
 
 	//adding eventListeners
 	function initializeEvents(){
@@ -173,8 +177,17 @@
 	}
 })();
 
-var myModal = new Modal();
+var myModal = new Modal({
+ content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+});
+
+
 var btn = document.getElementsByClassName("btn")[0];
 btn.addEventListener("click", function(){
 	myModal.open();
+});
+window.addEventListener("keyup", function(event){
+	if(event.keyCode === 32) {
+		event.preventDefault();
+	}
 });

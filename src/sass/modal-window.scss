@@ -1,6 +1,5 @@
 %o-btn {
 	padding: 12px 14px;
-	border-radius: 2px;
 	background: $btn-green;
     box-shadow: 0 5px 1px $btn-shadow-dark-green;
     outline: 0;
@@ -27,20 +26,21 @@
 	        transform: $args;
 }
 
-#main {
-	.btn {
-		@extend %o-btn;
 
-		&:active,
-		&:focus,
-		&:hover {
-			outline:0;
-		}
+.btn {
+	@extend %o-btn;
 
-		&:hover {
-			opacity: 0.6;
-			cursor: pointer;
-		}
+	margin-left: 45%;
+
+	&:active,
+	&:focus,
+	&:hover {
+		outline:0;
+	}
+
+	&:hover {
+		opacity: 0.6;
+		cursor: pointer;
 	}
 }
 
@@ -49,25 +49,20 @@
 	position: absolute;
 	top: -300%;
     z-index: 2;
-    margin: 0 auto;
-    padding: 10px;
+    padding: 20px;
     width: 90%;
+    left: 50%;
+    background: $white;
+
+    @include transform(translate(-50%, -50%));
+
+    @include transition(500ms top 100ms ease);
 
 
     &.modal-open{
     	top: 50%;
-    	left: 50%;
-    	background: $white;
-
-    	/*@include transition(3s top 3s ease);*/
-
     	@include transform(translate(-50%, -50%));
     }
-
-
-   /* @include transition(1ms opacity ease);*/
-
-    /*@include transform(translate(0, -50%));*/
 
 
     &-close-btn {
@@ -103,10 +98,12 @@
 		top: 0;
 		bottom: 0;
 
-		@include transition(1ms opacity ease);
+		@include transition(500ms opacity ease);
+
 
 		&.overlay-open {
-			opacity: 1;
+
+		    opacity: 1;
 		}
 	}
 
@@ -115,5 +112,13 @@
 		font-size: 20px;
 		line-height: 1;
 		font-weight: normal;
+	}
+
+	&.modal-anchored {
+		top: 20px;
+
+		@include transform(translate(-50%, 0));
+
+		@include transition(500ms top 100ms ease);
 	}
 }
