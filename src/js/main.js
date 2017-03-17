@@ -1,4 +1,3 @@
-//https://scotch.io/tutorials/building-your-own-javascript-modal-plugin
 
 //Creating IIFE to hide its global visuality
 
