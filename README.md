@@ -1,5 +1,1 @@
-modal plugin
-
-* install git
-* npm install
-* gem install compass
+canvas practice for drawing smooth-silk graphic
