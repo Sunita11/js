@@ -1,1 +1,1 @@
-canvas practice for drawing smooth-silk graphic
+https://codepen.io/lonekorean/project/editor/ZGpqVX/

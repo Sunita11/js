@@ -1,0 +1,171 @@
+
+.container{
+  width:100%;
+  height:100vh;
+  background-color: $bg;
+  overflow: hidden;
+}
+
+.box {
+  width: 200px;
+  height: 400px;
+  margin:  50px  auto;
+  position: relative;
+  top: calc(50% - 15%);
+}
+
+.glass-upper-section {
+   width: 180px;
+   height: 180px;
+   margin: 0 auto;
+   border: 3px solid $bg_glass;
+   border-top-color : $bg;
+   border-radius: 50% 50% 46% 46%;
+   position: relative;
+}
+.leaf {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background-color: $bg_glass;
+  
+  &:nth-child(odd) {
+    border-radius: 50% 0 50%;
+  }
+  
+  &:nth-child(even) {
+    border-radius:  0 50% 0;
+  }
+  
+  &:nth-child(1) {
+    top: 10px;
+    left:20px;
+  }
+  &:nth-child(2) {
+    top: 10px;
+    right:20px;
+  }
+  &:nth-child(3) {
+     top: 65px;
+     left:-3px;
+  }
+  &:nth-child(4) {
+    top: 60px;
+    right:-3px;
+  }
+}
+
+.doll {
+  position : absolute;
+  bottom: 0;
+  width: 30%;
+  left: calc(50% - 15%);
+  
+  .face {
+    height: 50px;
+    border-radius: 50%;
+    background-color: $bg_glass;
+    position: relative;
+    animation: shaken 2s ease infinite;
+    transform-origin: 50% 100%;
+    
+    
+    @keyframes shaken {
+      0% {transform: rotate(-12deg);}
+      2% {transform: rotate(12deg);}
+      4% {transform: rotate(-15deg);}
+      6% {transform: rotate(15deg);}
+      8% {transform: rotate(-22deg);}
+      10% {transform: rotate(22deg);}
+      12% {transform: rotate(-18deg);}
+      14% {transform: rotate(18deg);}
+      16%{transform: rotate(-12deg);}
+      18% {transform: rotate(12deg);}
+      100% {transform: rotate(0deg);}
+      
+    }
+    
+    &::before {
+      content : "";
+      width: 12px;
+      height: 12px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: $bg;
+      border-radius: 10px;
+      box-shadow: 
+        20px 5px 0 -1px $bg,
+        6px 20px 0 -1px $bg;
+      //border: 1px solid red;      
+    }
+  }
+  
+  .body {
+    height: 70px;
+    background-color: $bg_glass;
+    border-radius: 50% 50% 20% 20% ;
+    position: relative;
+    
+    &::before {
+      content: "";
+      position: absolute;
+      width: 20px;
+      left: 15px;
+      border: 3px solid $bg;
+      border-radius: 50%;
+    }
+    
+    .legs {
+      width: 15px;
+      height: 30px;
+      position: absolute;
+      bottom: -2px;
+      left: 5px;
+      border: 3px solid $bg;
+      border-radius: 50% 50% 46% 46%;
+      box-shadow: 
+        20px 0 0 -3px $bg_glass,
+        20px 0 0 0 $bg; 
+      
+    }
+  }
+}
+
+
+.glass-holder {
+  position:relative;
+  top: -6px;
+  
+  & * {
+    width: 4px;
+    margin: 0 auto;
+  }
+  
+  &-up {    
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 14px solid $bg_glass;
+  }
+  
+  &-mid {
+    height: 50px;
+    background-color: $bg_glass;
+  }
+  &-lower {    
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 14px solid $bg_glass;
+  }
+}
+
+.text {
+    color: $bg_text;
+  font : {
+    family: $font-family;
+    size: 16px;
+    weight: normal;
+  }
+  line-height:1;
+  text-align: center;
+  }
