@@ -18,7 +18,7 @@ module.exports = function(grunt){
 					style: 'expanded'
 				},
 				files: {                        
-					'css/main.css': 'src/sass/import-sass-files.scss'
+					'dist/styles/main.css': 'src/sass/import-sass-files.scss'
 				}
 			}
 		},
@@ -29,7 +29,7 @@ module.exports = function(grunt){
 			},
 			dist: {
 				src: ['src/**/*.js'],
-				dest: 'dist/<%= pkg.name %>.js'
+				dest: 'dist/scripts/main.js'
 			}
 		},
 
@@ -39,7 +39,7 @@ module.exports = function(grunt){
 			},
 			dist: {
 				files: {
-					'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+					'dist/scripts/main.min.js': ['<%= concat.dist.dest %>']
 				}
 			}
 		},
@@ -61,17 +61,26 @@ module.exports = function(grunt){
 				files: ['src/sass/*.scss'],
 				tasks:['sass'],
 				options: {
-					livereload: true,
+					livereload: {
+						host: 'localhost',
+						port: 1337
+					},
 				}
 			},
 			jsWatch: {
 				files: ['<%= jshint.files %>','src/js/*'],
-				tasks: ['jshint']
+				tasks: ['jshint', 'concat','uglify'],
+				options: {
+					livereload: {
+						host: 'localhost',
+						port: 1337
+					},
+				}
 			}
 		},
 
 		concurrent: {
-			target: ['connect','watch:sassWatch']
+			target: ['connect','watch']
 		},
 
 		clean: ['dist/*','css/']
@@ -86,6 +95,6 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-concurrent');
 
-	grunt.registerTask('default', ['sass','jshint', 'concat','uglify']);
-	grunt.registerTask('all', ['clean','sass','concurrent:target']);
+	//grunt.registerTask('default', ['sass','jshint', 'concat','uglify']);
+	grunt.registerTask('all', ['clean','sass','jshint', 'concat','uglify','concurrent:target']);
 };

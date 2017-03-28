@@ -5,3 +5,5 @@ npm-debug.log.3576972903
 css
 .sass-cache
 stylesheets
+bower_components
+dist
