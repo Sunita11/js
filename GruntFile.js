@@ -83,7 +83,18 @@ module.exports = function(grunt){
 			target: ['connect','watch']
 		},
 
-		clean: ['dist/*','css/']
+		webpack: {
+			pwa: {
+				//webpack options
+				entry : './dist/scripts/main.js',
+				output: {
+					path: __dirname + '/build',
+					filename: 'bundle.js'
+				}
+			}
+		},
+
+		clean: ['dist/*','path/']
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -94,7 +105,8 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-concurrent');
+	grunt.loadNpmTasks('grunt-webpack');
 
 	//grunt.registerTask('default', ['sass','jshint', 'concat','uglify']);
-	grunt.registerTask('all', ['clean','sass','jshint', 'concat','uglify','concurrent:target']);
+	grunt.registerTask('all', ['clean','sass','jshint', 'concat','uglify','webpack','concurrent:target']);
 };

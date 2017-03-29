@@ -7,3 +7,5 @@ css
 stylesheets
 bower_components
 dist
+build
+webpack.config.js
