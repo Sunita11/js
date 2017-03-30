@@ -90,6 +90,24 @@ module.exports = function(grunt){
 				output: {
 					path: __dirname + '/build',
 					filename: 'bundle.js'
+				},
+				module: {
+					loaders: [
+						{
+							test: /\.js$/,
+							exclude: /(node_modules | bower_components)/,
+							loader: 'babel-loader'
+						}
+					]
+				},
+				node: {
+					fs: "empty"
+				},
+				//to resolve "require.extensions" warning
+				resolve: {
+					alias: {
+						handlebars: 'handlebars/dist/handlebars.min.js'
+					}
 				}
 			}
 		},
@@ -107,6 +125,6 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-concurrent');
 	grunt.loadNpmTasks('grunt-webpack');
 
-	//grunt.registerTask('default', ['sass','jshint', 'concat','uglify']);
-	grunt.registerTask('all', ['clean','sass','jshint', 'concat','uglify','webpack','concurrent:target']);
+	grunt.registerTask('default', ['sass','jshint', 'concat','uglify']);
+	grunt.registerTask('all', ['clean','sass', 'concat','uglify','webpack','concurrent:target']);
 };
