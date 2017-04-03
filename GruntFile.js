@@ -45,7 +45,7 @@ module.exports = function(grunt){
 		},
 
 		jshint: {
-			files: ['Gruntfile.js', 'src/**/*.js'],
+			files: ['Gruntfile.js', 'src/js/*.js'],
 			options: {
 				globals: {
 					jQuery: true,
@@ -68,8 +68,8 @@ module.exports = function(grunt){
 				}
 			},
 			jsWatch: {
-				files: ['<%= jshint.files %>','src/js/*'],
-				tasks: ['jshint', 'concat','uglify'],
+				files: ['<%= jshint.files %>','src/scripts/*.js'],
+				tasks: ['jshint', 'concat','uglify','webpack'],
 				options: {
 					livereload: {
 						host: 'localhost',
@@ -79,14 +79,10 @@ module.exports = function(grunt){
 			}
 		},
 
-		concurrent: {
-			target: ['connect','watch']
-		},
-
 		webpack: {
 			pwa: {
 				//webpack options
-				entry : './dist/scripts/main.js',
+				entry : './dist/scripts/main.min.js',
 				output: {
 					path: __dirname + '/build',
 					filename: 'bundle.js'
@@ -112,7 +108,12 @@ module.exports = function(grunt){
 			}
 		},
 
-		clean: ['dist/*','path/']
+
+		concurrent: {
+			target: ['connect','watch']
+		},
+
+		clean: ['dist/*','build/*']
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -125,6 +126,7 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-concurrent');
 	grunt.loadNpmTasks('grunt-webpack');
 
-	grunt.registerTask('default', ['sass','jshint', 'concat','uglify']);
+	grunt.registerTask('default', ['sass','jshint', 'concat','uglify','connect']);
+	grunt.registerTask('wa', ['watch']);
 	grunt.registerTask('all', ['clean','sass', 'concat','uglify','webpack','concurrent:target']);
 };
