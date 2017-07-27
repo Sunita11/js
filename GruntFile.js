@@ -82,9 +82,9 @@ module.exports = function(grunt){
 		webpack: {
 			pwa: {
 				//webpack options
-				entry : './dist/scripts/main.min.js',
+				entry : __dirname + '/dist/scripts/main.js',
 				output: {
-					path: __dirname + '/build',
+					path: __dirname + '/dist/scripts',
 					filename: 'bundle.js'
 				},
 				module: {
@@ -92,7 +92,7 @@ module.exports = function(grunt){
 						{
 							test: /\.js$/,
 							exclude: /(node_modules | bower_components)/,
-							loader: 'babel-loader'
+							loader: 'babel-loader?presets[]=es2015'
 						}
 					]
 				},
@@ -128,5 +128,5 @@ module.exports = function(grunt){
 
 	grunt.registerTask('default', ['sass','jshint', 'concat','uglify','connect']);
 	grunt.registerTask('wa', ['watch']);
-	grunt.registerTask('all', ['clean','sass', 'concat','uglify','webpack','concurrent:target']);
+	grunt.registerTask('all', ['clean','sass', 'concat','webpack','concurrent:target']);
 };

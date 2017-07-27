@@ -1,7 +1,22 @@
 window.jQuery = window.$ = require('jquery');
-var bootstrap = require('bootstrap-sass');
-var handlebar = require('handlebars');
+/*var bootstrap = require('bootstrap-sass');
+var handlebar = require('handlebars');*/
 
-$(function(){
-	console.log("bootstrap js ------>   " + window.jQuery);
-});	//Page Ready
+(function($,window,document,PWP){
+	PWP.project =(function(){
+		function _project(){
+			this.init = function(){
+				initialize();
+			}
+
+			var initialize = function(name="sunita"){
+				var a= name;
+			}
+		}
+		return new _project();
+	})();
+
+	$(function() {
+        PWP.project.init();
+    });
+})(jQuery, this, this.document, window.PWP = window.PWP || {});
