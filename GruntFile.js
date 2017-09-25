@@ -28,7 +28,7 @@ module.exports = function(grunt){
 				separator: ';'
 			},
 			dist: {
-				src: ['src/**/*.js'],
+				src: ['src/js/*.js'],
 				dest: 'dist/scripts/main.js'
 			}
 		},
@@ -61,20 +61,14 @@ module.exports = function(grunt){
 				files: ['src/sass/*.scss'],
 				tasks:['sass'],
 				options: {
-					livereload: {
-						host: 'localhost',
-						port: 1337
-					},
+					livereload: true,
 				}
 			},
 			jsWatch: {
 				files: ['<%= jshint.files %>','src/scripts/*.js'],
-				tasks: ['jshint', 'concat','uglify','webpack'],
+				tasks: ['concat','uglify','webpack'],
 				options: {
-					livereload: {
-						host: 'localhost',
-						port: 1337
-					},
+					livereload: true,
 				}
 			}
 		},
@@ -82,7 +76,7 @@ module.exports = function(grunt){
 		webpack: {
 			pwa: {
 				//webpack options
-				entry : __dirname + '/dist/scripts/main.js',
+				entry : __dirname + '/src/js/main.js',
 				output: {
 					path: __dirname + '/dist/scripts',
 					filename: 'bundle.js'
@@ -92,7 +86,22 @@ module.exports = function(grunt){
 						{
 							test: /\.js$/,
 							exclude: /(node_modules | bower_components)/,
-							loader: 'babel-loader?presets[]=es2015'
+							loader: 'babel-loader?presets[]=react'
+						},
+						{
+							test: /\.json$/,
+							exclude: /(node_modules | bower_components)/,
+							loader: 'json-loader'
+						},
+						{
+							test: /\.css$/,
+							exclude: /(node_modules | bower_components)/,
+							loader: 'style-loader!css-loader!autoprefixer-loader'
+						},
+						{
+							test: /\.scss$/,
+							exclude: /(node_modules | bower_components)/,
+							loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader'
 						}
 					]
 				},
@@ -113,6 +122,22 @@ module.exports = function(grunt){
 			target: ['connect','watch']
 		},
 
+		browserSync: {
+			dev: {
+				bsFiles: {
+					src: [
+						'src/sass/*.scss',
+						'src/js/*.js',
+						'*.html'
+					]
+				},
+				options: {
+					watchTask : true,
+					server: './'
+				}
+			}
+		},
+
 		clean: ['dist/*','build/*']
 	});
 
@@ -125,8 +150,10 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-concurrent');
 	grunt.loadNpmTasks('grunt-webpack');
+	grunt.loadNpmTasks('grunt-browser-sync');
 
 	grunt.registerTask('default', ['sass','jshint', 'concat','uglify','connect']);
 	grunt.registerTask('wa', ['watch']);
-	grunt.registerTask('all', ['clean','sass', 'concat','webpack','concurrent:target']);
+	grunt.registerTask('all', ['clean','sass','webpack','connect','watch:jsWatch']);
+	grunt.registerTask('re', ['clean','webpack','browserSync','watch']);
 };
