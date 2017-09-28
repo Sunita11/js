@@ -65,8 +65,8 @@ module.exports = function(grunt){
 				}
 			},
 			jsWatch: {
-				files: ['<%= jshint.files %>','src/scripts/*.js'],
-				tasks: ['concat','uglify','webpack'],
+				files: ['<%= jshint.files %>','src/**/*.js'],
+				tasks: ['concat','webpack'],
 				options: {
 					livereload: true,
 				}
@@ -155,5 +155,5 @@ module.exports = function(grunt){
 	grunt.registerTask('default', ['sass','jshint', 'concat','uglify','connect']);
 	grunt.registerTask('wa', ['watch']);
 	grunt.registerTask('all', ['clean','sass','webpack','connect','watch:jsWatch']);
-	grunt.registerTask('re', ['clean','webpack','browserSync','watch']);
+	grunt.registerTask('re', ['clean','webpack','browserSync','watch:jsWatch']);
 };
