@@ -1,33 +1,69 @@
 import React,{Component} from 'react'
 import {render} from 'react-dom'
 
-export class AddInput extends Component {
-	getFileData (e) {
-		let dataFile = document.getElementById('myFile');
-		let reader = new FileReader();
-		console.log('added');
-		reader.onload = function(e) {
-			console.log('initialized');
+export const AddInput = () => {
+	let dataFile,
+		reader,
+		resultArr;
 
-			var data = e.target.result();
-			var workbook = XLSX.read(data,{
-				type: 'binary'
-			});
 
-			workbook.SheetNames.forEach(function(sheetname){
-				var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-				var jsonObj = JSON.stringify(XL_row_object);
-				console.log(jsonObj);
-			});
-		}
-		reader.onError = function(){
-			console.log('error');
+	const readFileData = (e) => {
+		let data = e.target.result;
+		if(data.trim() === '') {
+			console.log('upload unsuccessfull');
+			document.getElementById('myFile').value = '';
+			return;
+		} else {
+			let rowsArr = data.split('\n');
+			for(let j=0;j<rowsArr.length;j++) {
+				rowsArr[j] = rowsArr[j].split(',');
+			}
+			resultArr = rowsArr;
+			checkForErrors();
 		}
 	}
-	render () {
-		return (<input type="file" 
-					   id="myFile"
-					   accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
-					   onChange={this.getFileData} />)
+
+	const errorCallback = () => {
+		console.log('error');
 	}
+
+	const checkForErrors = () => {
+		let errorFlag = false,
+			counter = 0,
+			rowLength = resultArr.length,
+			colLength,
+			pattern = /[a-zA-Z0-9]+\s*$/;
+		for(let i =0; i<rowLength; i++) {
+			colLength = resultArr[i].length;
+			for(let j=0;j<colLength;j++) {
+				if(resultArr[i][j] === '' || !(pattern.test(resultArr[i][j].trim()))) {
+					errorFlag = true;
+				}
+			}
+			counter = (errorFlag) ? ++counter : counter;
+			errorFlag = false;
+		}
+		console.log(counter);
+	}
+
+	const getFileData = () => {
+		dataFile = document.getElementById('myFile');
+
+		if((dataFile.files[0].type === '.csv') || (dataFile.files[0].type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') || (dataFile.files[0].type === 'application/vnd.ms-excel')) {
+			reader = new FileReader();
+			reader.onload = readFileData;
+			reader.onerror = errorCallback;
+			reader.readAsText(dataFile.files[0]);
+		}
+		else {
+			console.log('upload unsuccessfull due to unsupported format');
+			document.getElementById('myFile').value = '';
+			document.getElementById('errorMsg').innerHTML = 'upload unsuccessfull due to unsupported format';
+		}
+	}
+
+	return (<input type="file" 
+					id="myFile" 
+					accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+					onChange={getFileData} />);
 }
