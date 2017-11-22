@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>react project</title>
@@ -9,6 +9,13 @@
 <body>
 <div id="root">
 </div>
+<div id="map" class="mapWithCurrentLoc">
+</div>
+    <script type="text/javascript" src="src/scripts/map-scripts/map.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcuT_Mz8v6LplZEcfifhb07Cxqiiofr3I&callback=initMap">
+    </script>
 <script type="text/javascript" src="dist/script/main.js"></script>
+    
 </body>
 </html>

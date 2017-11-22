@@ -56,8 +56,8 @@ gulp.task('js', function(){
 **** WATCH TASK ****
 */
 gulp.task('watch',function(){
+    gulp.watch('src/styles/**/*.scss',['sass']);
 	gulp.watch('src/scripts/*.js',['webpack']);
-	gulp.watch('src/styles/**/*.scss',['sass']);
 });
 
 /*
