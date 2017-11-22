@@ -2,7 +2,8 @@
     var initMap = () => {
         let map,
             infoWindow,
-            latLong;
+            latLong,
+            marker;
         map = new google.maps.Map(document.getElementById('map'), {
             center: {
                 lat: -34.397,
@@ -10,6 +11,8 @@
             },
             zoom: 10
         });
+        
+        
         infoWindow = new google.maps.InfoWindow;
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position){
@@ -18,10 +21,14 @@
                     lng: position.coords.longitude
                 };
                 
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('Location Found...');
-                infoWindow.open(map);
+                //infoWindow.setPosition(pos);
+                //infoWindow.setContent('Location Found...');
+                //infoWindow.open(map);
                 map.setCenter(pos);
+                marker = new google.maps.Marker({
+                    position: pos,
+                    map: map
+                });
             }, function(){
                 handleLocationError(true, infoWindow, map.getCenter());
             });
