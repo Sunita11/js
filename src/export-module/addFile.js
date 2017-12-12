@@ -48,8 +48,9 @@ export const AddInput = () => {
 
 	const getFileData = () => {
 		dataFile = document.getElementById('myFile');
-
-		if((dataFile.files[0].type === '.csv') || (dataFile.files[0].type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') || (dataFile.files[0].type === 'application/vnd.ms-excel')) {
+        console.log(dataFile.files[0]);
+		if((dataFile.files[0].type === 'text/csv') || (dataFile.files[0].type === '.csv') || (dataFile.files[0].type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') || (dataFile.files[0].type === 'application/vnd.ms-excel')) {
+            console.log('inside if');
 			reader = new FileReader();
 			reader.onload = readFileData;
 			reader.onerror = errorCallback;
