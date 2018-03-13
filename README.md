@@ -20,3 +20,8 @@ Project structure:
  	|-> .gitignore : files to be ignored while pushing code to git repository
  	|-> glupfile.js : contains task-running configuration code
  	|-> package.json : contains project's dependencies
+
+ 	Running commands:
+ 	- npx webpack --config webpack.config.js
+ 	- npm run build
+ 	- npm run start

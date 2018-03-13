@@ -4,3 +4,4 @@ node_modules
 npm-debug.log.3576972903
 dist
 .sass-cache
+package-lock.json
