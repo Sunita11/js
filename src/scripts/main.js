@@ -12,11 +12,21 @@ function component() {
 
 	var btn = document.createElement('button');
 	btn.innerHTML = 'Click Me and check console';
-	btn.onClick = printMe;
+	btn.onclick = printMe;
 
 	elem.appendChild(btn);
 
 	return elem;
 }
 
-document.body.appendChild(component());
+//document.body.appendChild(component());
+let element = component();
+
+document.body.appendChild(element);
+
+if(module.hot) {
+	module.hot.accept('./print.js', function() {
+		console.log('Accepting the updated printMe module');
+		prentMe();
+	})
+}
