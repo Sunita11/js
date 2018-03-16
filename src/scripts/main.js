@@ -1,10 +1,14 @@
 import Icon from '../../src/images/m1.png'
-import printMe from '../../src/scripts/print.js'
+import printMe from './print.js'
+import { cube } from './math.js'
 
 function component() {
-	var elem = document.createElement('div');
+	var elem = document.createElement('pre');
 
-	elem.innerHTML = 'Hello World 1';
+	elem.innerHTML = [
+			'Hello Webpack!',
+			'5 cubed is equal to ' + cube(5)
+		].join('\n\n');
 	var myIcon = new Image();
 	myIcon.src = Icon;
 

@@ -3,6 +3,7 @@ const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const env = process.env.NODE_EN;
 
 module.exports = {
@@ -19,11 +20,13 @@ module.exports = {
     		title: 'Output Management'
     	}),
     	new webpack.NamedModulesPlugin(),
-    	new webpack.HotModuleReplacementPlugin()
+    	new webpack.HotModuleReplacementPlugin(),
+    	new UglifyJSPlugin({
+    		sourceMap: true
+    	})
     ],
 	output: {
-		//filename: 'bundle.js',
-		filename: '[name].bundle.js',
+		filename: '[name].[hash].js',
 		path: path.resolve(__dirname, 'dist/script'),
 		publicPath: '/'
 	},
