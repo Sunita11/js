@@ -1,1 +1,1 @@
-just a simple angular app for learning purpose
+https://scotch.io/tutorials/testing-angularjs-with-jasmine-and-karma-part-1
