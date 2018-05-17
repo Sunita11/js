@@ -2,11 +2,7 @@
 node_modules
 .tmp
 npm-debug.log.3576972903
-css
-.sass-cache
-stylesheets
-bower_components
 dist
-build
-webpack.config.js
-images
+.sass-cache
+package-lock.json
+npm-debug.log
