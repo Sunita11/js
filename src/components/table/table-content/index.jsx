@@ -1,4 +1,6 @@
 import React from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 import * as style from './../style.scss';
 
 const dateCol = (detail) => {
@@ -52,7 +54,7 @@ const getTableContent = (props) => {
             <td>
                 <span className={`${style.iconWrapper} ${style.lessFontSize}`}><img src={item.fileIcon}   alt='file icon'/>file</span>
                 <span className={`${style.iconWrapper} ${style.lessFontSize}`}><img src={item.signalIcon}  alt='signal icon'/></span>
-                <span className={`${style.iconWrapper} ${style.lessFontSize}`} onClick={(evt)=>{showCalendar(evt,detailedObj)}}><img src={item.calenderIcon}  alt='file icon'/>Schedule Again</span>
+                <span className={`${style.iconWrapper} ${style.lessFontSize}`}><img src={item.calenderIcon}  alt='file icon' onClick={showCalendar}/>Schedule Again <div className={`calendar-wrapper`}>{/* <Calendar value={new Date()}/> */}</div></span>
             </td>
 
             </tr>);

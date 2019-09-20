@@ -20,7 +20,7 @@ class Campaign extends React.Component {
         this.liveCampaignData=[];
         this.pastCampaignData=[];
         this.campaignBtnClickHandler = this.campaignBtnClickHandler.bind(this);
-        this.showCalender = this.showCalender.bind(this);
+        this.showCalendar = this.showCalendar.bind(this);
         this.showModal = this.showModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
@@ -45,8 +45,11 @@ class Campaign extends React.Component {
         });
     }
 
-    showCalender(item){
-        console.log('show calender here');
+    showCalendar(evt){
+        evt.stopPropagation();
+        const targetEle = evt.target;
+        const calender = targetEle.child;
+        console.log('show calender here', calender);
     }
 
     showModal(rowData){
@@ -94,7 +97,7 @@ class Campaign extends React.Component {
                     {tableContent && tableContent.length>0 && <Table
                         tableHeader={this.headers}
                         tableContent={tableContent}
-                        showCalender ={this.showCalender}
+                        showCalendar ={this.showCalendar}
                         showModal={this.showModal}
                     />}
                 </div>
