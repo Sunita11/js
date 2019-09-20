@@ -1,0 +1,42 @@
+.campaignWrapper {
+    border: 1px solid red;
+    max-width: 1220px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+h1 {
+    color: darkblue;
+    font-weight: 200;
+}
+
+.bold {
+    font-weight: 700;
+}
+.campaignBtn {
+    padding: 5px 10px;
+    color: white;
+    background-color: darkolivegreen;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 5px;
+    border: 2px solid darkolivegreen;
+}
+
+.active {
+    background-color: white;
+    color: darkolivegreen;
+}
+
+.active:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    border: 5px solid transparent;
+    border-top: darkolivegreen;
+
+}
+
+.btnWrapper {
+    margin-bottom: 20px;
+}

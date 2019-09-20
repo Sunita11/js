@@ -1,0 +1,44 @@
+.tableHeader {
+    text-transform: uppercase;
+    background-color: ghostwhite;
+}
+
+.tableHeaderItem {
+    padding: 10px 20px;
+    text-align: left;
+}
+
+
+.tableWrapper {
+    width: 100%;
+}
+
+.tableWrapper tr {
+    cursor: pointer;
+}
+
+.tableWrapper td {
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.tableWrapper td p {
+    margin: 0;
+}
+
+.lessFontSize {
+    font-size: 12px;
+}
+
+.iconWrapper img {
+    width: 40px;
+    vertical-align: none;
+}
+
+.iconWrapperDollar img{
+    width: 30px;
+}
+
+.floatLeftImg {
+    float: left;
+}

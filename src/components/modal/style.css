@@ -1,0 +1,40 @@
+.overlay {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(black, .3);
+    height: 100vh;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    background-color: white;
+    width: 50%;
+    max-width: 600px;
+    padding: 20px;
+}
+
+.showList {
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.lessFontSize {
+    font-size: 12px;
+}
+
+.iconWrapper img {
+    width: 40px;
+}
+
+.iconWrapperDollar img{
+    width: 30px;
+}
+
+.floatLeftImg {
+    float: left;
+}
