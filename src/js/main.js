@@ -21,14 +21,5 @@ var handlebar = require('handlebars');*/
     });
 })(jQuery, this, this.document, window.PWP = window.PWP || {});
 */
-
-function component() {
-	var element = document.createElement('div');
-  
-	// Lodash, currently included via a script, is required for this line to work
-	element.innerHTML = 'Hello webpack :D';
-  
-	return element;
-  }
-  
-  document.body.appendChild(component());
+import './../sass/import-sass-files.scss';
+import './materialize.min.js';

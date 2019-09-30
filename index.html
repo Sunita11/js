@@ -5,48 +5,82 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie-edge">
   	<title>Progressive Web App</title>
-	<link rel="stylesheet" type="text/css" href="dist/styles/main.css">
 	<noscript>Your browser does not support Javascipt</noscript>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
-	<header>
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button class="navbar-toggle collapsed" data-toggle="collapse" data-target="navbar-collapse" aria-expanded="false">
-					<span class="sr-only">Toggle Navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
+<body class='grey lighten-4'>
+	<nav class='z-depth-0'>
+		<div class='container nav-wrapper'>
+			<a href='/'>Food <span>Ninja</span></a>
+			<span class='right grey-text darken-text-1'>
+				<i class='material-icons sidenav-trigger' data-target='side-menu'>menu</i>
+			</span>
 		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li role="presentation" ><a href="#">Home<span class="sr-only">(current)</span></a></li>
-				<li role="presentation" ><a href="#">Profiles</a><span class="sr-only">(current)</span></li>
-				<li role="presentation" ><a href="#">Match</a><span class="sr-only">(current)</span></li>		
-			</ul>
-		</div>
-	</nav>
-	</header>
-	<div class="slideshow-content"></div>
-	<main>
-		<div class="page" id="adoption">
-			<div class="container">
-				<h2 class="page-headline">Adoption</h2>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-			</div>
-		</div>
-		<div class="page" id="appointments">
-			<div class="container">
-				<h2 class="page-headline">Appointments</h2>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-			</div>
-		</div>
-	</main>
 
+		<ul id='side-menu' class='sidenav side-menu'>
+			<li><a class='subheader'>FoodNinja</a></li>
+			<li><a href='/' class='waves-effect'>Home</a></li>
+			<li><a href='/pages/about.html' class='waves-effect'>About</a></li>
+			<li><div class='divider'></div></li>
+			<li><a href='/pages/contact.html' class='waves-effect'>
+				<i class='material-icons'>mail outline</i>Contact
+			</a></li>
+		</ul>
+	</nav>
+	<!-- recipes start -->
+	<div class="recipes container grey-text text-darken-1">
+		<div class="card-panel recipe white row">
+		<img src="./assets/images/dish.png" alt="recipe thumb">
+		<div class="recipe-details">
+			<div class="recipe-title">Edame Noodles</div>
+			<div class="recipe-ingredients">Edame Beans, Noodels, Garlic oil</div>
+		</div>
+		<div class="recipe-delete">
+			<i class="material-icons">delete_outline</i>
+		</div>
+		</div>
+		<div class="card-panel recipe white row">
+		<img src="./assets/images/dish.png" alt="recipe thumb">
+		<div class="recipe-details">
+			<div class="recipe-title">Edame Noodles</div>
+			<div class="recipe-ingredients">Edame Beans, Noodels, Garlic oil</div>
+		</div>
+		<div class="recipe-delete">
+			<i class="material-icons">delete_outline</i>
+		</div>
+		</div>
+		<div class="card-panel recipe white row">
+		<img src="./assets/images/dish.png" alt="recipe thumb">
+		<div class="recipe-details">
+			<div class="recipe-title">Edame Noodles</div>
+			<div class="recipe-ingredients">Edame Beans, Noodels, Garlic oil</div>
+		</div>
+		<div class="recipe-delete">
+			<i class="material-icons">delete_outline</i>
+		</div>
+		</div>
+		<div class="card-panel recipe white row">
+		<img src="./assets/images/dish.png" alt="recipe thumb">
+		<div class="recipe-details">
+			<div class="recipe-title">Edame Noodles</div>
+			<div class="recipe-ingredients">Edame Beans, Noodels, Garlic oil</div>
+		</div>
+		<div class="recipe-delete">
+			<i class="material-icons">delete_outline</i>
+		</div>
+		</div>
+	</div>
+
+	<!-- recipes end -->
+
+	<div class="center">
+		<a class="btn-floating btn-small btn-large add-btn sidenav-trigger" data-target="side-form">
+		<i class="material-icons">add</i>
+		</a>
+	</div>
+
+	<div id='side-form' class='sidenav side-form'>
+		<form class='add-recipe container '></form>
+	</div>
 </body>
-<script type="text/javascript" src="build/bundle.js"> </script>
-<!-- <script type="text/javascript" src="dist/scripts/main.js"> </script>-->
 </html>

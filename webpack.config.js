@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const createVariants = require('parallel-webpack').createVariants;
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const env = process.env.NODE_EN;
 
 
@@ -14,34 +15,31 @@ module.exports = {
 	plugins: [
 		new CleanWebpackPlugin(['dist']),
     	new HtmlWebpackPlugin({
-    		title: 'Output Management'
+			title: 'Output Management',
+			template: __dirname + '/index.html',
+			filename: 'index.html'
     	}),
     	new webpack.HotModuleReplacementPlugin(),
     	new UglifyJSPlugin({
     		sourceMap: true
-    	})
+		}),
+		new MiniCssExtractPlugin({
+			filename: 'style.css',
+		  })
     ],
 	output: {
-		filename: '[name].[hash].js',
+		// filename: '[name].[hash].js',
+		filename: 'index.js',
 		path: path.resolve(__dirname, 'dist/script'),
 		publicPath: '/'
 	},
 	module: {
 		rules: [
-			/* {
-				 test: /\.js$/,
-				 loader: ['babel-loader'],
-				 query: {
-					 presets : ['env']
-				 }
-			 },
-			 {
-				 test: /\.scss$/,
-				 loader: 'scss-loader',
-				 options: {
-					 modules: true
-				 }
-			 },*/
+			{
+				test:  /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				loader: 'babel-loader'
+			},
 			{
 				test: /\.(png|svg|jpg|gif)$/,
 				use: [
@@ -49,12 +47,25 @@ module.exports = {
 				]
 			},
 			{
-				test: /\.css$/,
-				use: [
-					'style-loader',
-					'css-loader'
-				]
-			}
+				test: /\.html$/,
+				loader: 'html-loader'
+			},
+			{
+				test: /\.(scss|css)$/,
+				use: [{
+					loader: "style-loader", options: {
+					}
+				},{
+					loader: MiniCssExtractPlugin.loader
+				}
+				, {
+					loader: "css-loader", options: {
+					}
+				}, {
+					loader: "sass-loader", options: {
+					}
+				}]
+			},
 		],
     },
 
