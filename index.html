@@ -20,9 +20,9 @@
 		<ul id='side-menu' class='sidenav side-menu'>
 			<li><a class='subheader'>FoodNinja</a></li>
 			<li><a href='/' class='waves-effect'>Home</a></li>
-			<li><a href='/pages/about.html' class='waves-effect'>About</a></li>
+			<li><a href='/about.html' class='waves-effect'>About</a></li>
 			<li><div class='divider'></div></li>
-			<li><a href='/pages/contact.html' class='waves-effect'>
+			<li><a href='/contact.html' class='waves-effect'>
 				<i class='material-icons'>mail outline</i>Contact
 			</a></li>
 		</ul>
@@ -80,7 +80,21 @@
 	</div>
 
 	<div id='side-form' class='sidenav side-form'>
-		<form class='add-recipe container '></form>
+		<form class="add-recipe container section">
+			<h6 >New Recipe</h6>
+			<div class="divider"></div>
+			<div class="input-field">
+			  <input placeholder="e.g. Ninja soup" id="title" type="text" class="validate">
+			  <label for="title">Recipe Title</label>
+			</div>
+			<div class="input-field">
+			  <input placeholder="e.g. Tofu, mushroom, garlic" id="ingredients" type="text" class="validate">
+			  <label for="ingredients">Ingredients</label>
+			</div>
+			<div class="input-field center">
+			  <button class="btn-small">Add</button>
+			</div>
+		</form>
 	</div>
 </body>
 </html>

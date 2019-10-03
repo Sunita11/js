@@ -18,6 +18,16 @@ module.exports = {
 			title: 'Output Management',
 			template: __dirname + '/index.html',
 			filename: 'index.html'
+		}),
+		new HtmlWebpackPlugin({
+			title: 'About Page',
+			template: __dirname + '/src/pages/about.html',
+			filename: 'about.html'
+		}),
+		new HtmlWebpackPlugin({
+			title: 'Contact Page',
+			template: __dirname + '/src/pages/contact.html',
+			filename: 'contact.html'
     	}),
     	new webpack.HotModuleReplacementPlugin(),
     	new UglifyJSPlugin({
