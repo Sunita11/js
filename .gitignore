@@ -4,3 +4,7 @@ node_modules
 npm-debug.log.3576972903
 css
 .sass-cache
+
+package-lock.json
+
+public
